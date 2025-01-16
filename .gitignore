@@ -1,1 +1,9 @@
+# Ignorer les fichiers sensibles
+.env
+*.log
+
+# Ignorer les dossiers spécifiques
+node_modules/
+venv/
+__pycache__/
 
