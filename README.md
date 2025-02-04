@@ -1,4 +1,6 @@
-﻿# Projet-Leadtime-AI
+# Projet_Fil_Rouge_IA
+Construire une solution IA. 
+
 
 # 🚀 Process Mise en Place de la Solution IA
 
@@ -39,10 +41,5 @@ Vous pouvez contribuer au projet en suivant ces étapes :
 1. **Fork** ce dépôt.
 2. **Clone** votre fork :
    ```sh
-   SSH :
-   git clone git@github.com:Purple-Manue/Projet-Leadtime-AI.git
-
-   https :
-   git clone https://github.com/Purple-Manue/Projet-Leadtime-AI.git
-   
-
+   git clone https://github.com/Purple-Manue/Projet_Fil_Rouge_IA.git
+   git@github.com:Purple-Manue/Projet_Fil_Rouge_IA.git
