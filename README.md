@@ -43,3 +43,33 @@ Vous pouvez contribuer au projet en suivant ces étapes :
    ```sh
    git clone https://github.com/Purple-Manue/Projet_Fil_Rouge_IA.git
    git@github.com:Purple-Manue/Projet_Fil_Rouge_IA.git
+
+3. **Schéma de l'application :**
+Leadtime_IA/
+│
+├── controller/
+│   └── project_controller.py  # Gère les interactions avec l'utilisateur
+│
+├── data/
+│   ├── délai article.xlsx  # Fichier de données 1
+│   ├── en tête commande.xlsx  # Fichier de données 2
+│   ├── ligne commande en cours.xlsx  # Fichier de données 3
+│   ├── ligne commande livrée.csv  # Fichier de données 4
+│   └── livraison commande fournisseur.xlsx  # Fichier de données 5
+│
+├── img/
+│   └── Logo_LeadtimeIA.webp  # Logo de l'application
+│
+├── model/
+│   └── data_handler.py  # Gère le traitement des données
+│
+├── view/
+│   └── display.py  # Affiche la page d'accueil et les éléments de l'interface
+│
+├── app.py  # Point d'entrée de l'application Streamlit
+├── poetry.lock  # Fichier de gestion des dépendances de Poetry
+├── pyproject.toml  # Fichier de configuration de Poetry
+├── requirements.txt  # Liste des dépendances pour pip (facultatif)
+├── README.md  # Documentation de l'application
+├── .gitignore  # Fichier pour ignorer certains fichiers dans Git
+└── desktop.ini  # Fichier Windows non nécessaire (à supprimer si inutile)
