@@ -1,59 +1,46 @@
 import streamlit as st
 import pandas as pd
-from datetime import date  # Importation correcte de 'date'
-from datetime import time  # Importation pour l'heure
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
 
-# Exemple de code Streamlit avec date_input
-st.date_input("Sélectionnez votre date de naissance", max_value=date.today())
+from PIL import Image
+
+# Titre de la page
+st.set_page_config(page_title="Projet Fil Rouge IA", page_icon=":guardsman:", layout="centered")
+
+# En-têtes
+st.title("Leadtime IA")
+st.subheader("Ce projet vise à concevoir et implémenter une solution d'intelligence artificielle (IA) pour améliorer la gestion des achats, de la logistique et des approvisionnements. Il repose sur la collecte des besoins des utilisateurs afin d'automatiser et d'optimiser les processus métiers.")
+
+# Charger et afficher l'image avec PIL
+image_path = "Img/Logo_LeadtimeIA.webp"
+
+# Essayer de charger l'image et l'afficher
+try:
+    image = Image.open(image_path)
+    st.image(image, caption="Logo Projet Fil Rouge", use_column_width=True)  # Affichage de l'image redimensionnée
+except FileNotFoundError:
+    st.write(f"Image non trouvée à l'emplacement : {image_path}")  # Fermeture correcte de la f-string
 
 
-st.date_input("Sélectionnez votre date de naissance")
 
-st.time_input("Configurez une alarme à ", time(7, 30))
+# Section de texte avec du markdown
+st.markdown('''
+    Voici une explication de mon projet de Fil Rouge IA : 
+    Le but est de développer une solution d'intelligence artificielle pour améliorer la gestion des stocks et des approvisionnements.
+    ''')
 
+# Inputs utilisateur
+st.text_input("Quel est le titre de votre projet ?", "Mon Projet IA")
+st.text_area("Décrivez brièvement votre projet", "Entrez la description ici...")
+st.selectbox("Choisissez un modèle d'IA", ["Modèle A", "Modèle B", "Modèle C"])
+st.slider("Sélectionnez un niveau d'importance", 1, 10, 5)
 
-st.write("Hello World")
+# Bouton pour soumettre
+if st.button("Soumettre"):
+    st.write("Votre projet a été soumis !")
 
-st.title("Le titre de ma page")
-st.header("Une En-tête Importante")
-st.subheader("Une En-tête Secondaire")
-st.text("Mon texte classique")
-st.markdown(''' :rainbow: :rainbow[Mon markdown] ''')
-st.write(
-    pd.DataFrame({
-            "Cartes": ['Nom 1', 'Nom 2', 'Nom 3', 'Nom 4'],
-            "Quantité": [0, 1, 0, 3]}
-    )
-)
-if st.button("Ajouter"):
-    st.write("+1")
-    
-st.checkbox('Tu es incollable sur l\'univers du Roi ion.')
-st.write('___')
-st.radio("Est-ce que Le Roi lion est le meilleur Disney ?",
-['Oui !', 'Evidemment !', 'La question ne se pose même pas.'])
-st.write('___')
-st.toggle("Tu as vu Le Roi lion", value=True)
-st.write('___')
-st.selectbox("Qui a tué Mufasa ?",
-['Simba', 'Scar', 'Zazu'])
-st.write('___')
-st.multiselect("Quels sont vos personnages favoris ?",
-['Simba', 'Mufasa', 'Scar', 'Nala'])
-st.write('___')
-st.select_slider("Donnez votre appréciation sur le Roi lion",
-['Mauvais', 'Bon', 'Excellent'], value='Excellent')
-
-st.text_input("Quel est le titre de votre film favori ?", "Le Roi lion :D")
-
-st.text_area("Peux-tu expliquer pourquoi c'est ton film favoris")
-
-st.number_input("Tu en possèdes :", min_value=0)
-st.slider("Sélectionnez la plage de date :",
-           min_value=1923,
-           max_value=date.today().year,
-           value=(1923, date.today().year)
-          )
-st.date_input("Sélectionnez votre date de naissance")
-
-st.time_input("Configurez une alarme à ", time(7, 30))
+# Ajout d'un footer
+st.markdown("---")
+st.write("© 2025 - Projet Fil Rouge IA")
