@@ -41,6 +41,6 @@ Vous pouvez contribuer au projet en suivant ces étapes :
 1. **Fork** ce dépôt.
 2. **Clone** votre fork :
    ```sh
-   git clone https://github.com/Purple-Manue/Projet_Fil_Rouge_IA.git
-   git@github.com:Purple-Manue/Projet_Fil_Rouge_IA.git
+   git clone https://github.com/Purple-Manue/Leadtime_IA.git
+   git@github.com:Purple-Manue/Leadtime_IA.git
 
