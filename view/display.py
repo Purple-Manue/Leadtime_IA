@@ -9,7 +9,6 @@ def display_main_page():
         image = Image.open("Img/Logo_LeadtimeIA.webp")
         st.image(image, caption="Logo Projet Leadtime IA", use_container_width=True)
 
-
         
     except FileNotFoundError:
         st.write("Logo non trouvé.")
