@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image
+from controller.auth_controller import authenticate_user  # Importer la fonction d'authentification
 
 def display_main_page():
     """Affichage de la page d'accueil du projet"""
