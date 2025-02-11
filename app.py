@@ -1,50 +1,56 @@
-import sys
-sys.path.append("C:/Users/emman/Documents/WildCodeSchool/Projet_Fil_Rouge/Leadtime_IA")
-
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-from controller.auth_controller import authenticate_user  # Importer la fonction d'authentification
+from streamlit_authenticator import Authenticate
+#from controller.auth_controller import authenticate_user  # Importer la fonction d'authentification
 from view.display import display_main_page  # Importer la fonction pour afficher la page principale
 from model.data_handler import load_data  # Importer la fonction pour charger les données
 from model.data_processing import process_data  # Importer la fonction pour traiter les données
 from plotting.plotting import create_graphs  # Importer la fonction pour générer des graphiques
 
+# Ajouter le contenu de l'application ici
+st.title("Leadtime IA")
+st.subheader("Une solution d'IA pour optimiser la gestion des stocks et des approvisionnements.")
 
-# Appel à la fonction d'authentification
-authentication_status, authenticator = authenticate_user()
+# Nos données utilisateurs doivent respecter ce format
+lesDonneesDesComptes = {'usernames': {'utilisateur': {'name': 'utilisateur',
+   'password': 'utilisateurMDP',
+   'email': 'utilisateur@gmail.com',
+   'failed_login_attemps': 0, # Sera géré automatiquement
+   'logged_in': False, # Sera géré automatiquement
+   'role': 'utilisateur'},
+  'root': {'name': 'root',
+   'password': 'rootMDP',
+   'email': 'admin@gmail.com',
+   'failed_login_attemps': 0, # Sera géré automatiquement
+   'logged_in': False, # Sera géré automatiquement
+   'role': 'administrateur'}}}
 
-# Vérification de l'état de l'authentification
-if authentication_status:
-    st.write(f'Bienvenue {authenticator.username}')  # Affiche le nom de l'utilisateur connecté
+authenticator = Authenticate(
+    lesDonneesDesComptes, # Les données des comptes
+    "cookie name", # Le nom du cookie, un str quelconque
+    "cookie key", # La clé du cookie, un str quelconque
+    30, # Le nombre de jours avant que le cookie expire 
+)
 
-    # Fonction d'accueil qui s'affiche après authentification
-    def accueil():
-        st.title("Bienvenu sur le contenu réservé aux utilisateurs connectés")
-    
-    accueil()
+authenticator.login()
 
-    # Le bouton de déconnexion
-    if st.button("Déconnexion"):
-        authenticator.logout("Déconnexion")
 
-    # Ajouter le contenu de l'application ici
-    st.title("Leadtime IA")
-    st.subheader("Une solution d'IA pour optimiser la gestion des stocks et des approvisionnements.")
-    
-    # Afficher la page principale après authentification
-    display_main_page()
-    
-    # Exemple de chargement des données en back-end
-    if st.button("Charger les données"):
-        file_path = 'data/ligne commande en cours.xlsx'  # À adapter selon le fichier d'entrée
-        try:
-            data_preview = load_data(file_path)
-            st.write("Aperçu des données :", data_preview)
-        except Exception as e:
-            st.error(f"Erreur lors du chargement des données : {e}")
+if st.session_state["authentication_status"]:
+  # Afficher la page principale après authentification
+  display_main_page()
+
+  # Exemple de chargement des données en back-end
+  if st.button("Charger les données"):
+    file_path = 'data/ligne commande en cours.xlsx'  # À adapter selon le fichier d'entrée
+    try:
+        # Charger les données
+        data_preview = load_data(file_path)
+        st.write("Aperçu des données :", data_preview)
+    except Exception as e:
+        st.error(f"Erreur lors du chargement des données : {e}")
 
     # Charger les fichiers Excel
     try:
@@ -97,5 +103,11 @@ if authentication_status:
     st.pyplot(fig2)
     st.plotly_chart(fig3)
 
-else:
-    st.error("Nom d'utilisateur ou mot de passe incorrect")
+  # Le bouton de déconnexion
+  authenticator.logout("Déconnexion")
+
+elif st.session_state["authentication_status"] is False:
+    st.error("L'username ou le password est/sont incorrect")
+elif st.session_state["authentication_status"] is None:
+    st.warning('Les champs username et mot de passe doivent être remplie')
+
