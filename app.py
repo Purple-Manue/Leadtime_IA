@@ -12,6 +12,7 @@ from model.data_handler import load_data  # Importer la fonction pour charger le
 from model.data_processing import process_data  # Importer la fonction pour traiter les données
 from plotting.plotting import create_graphs  # Importer la fonction pour générer des graphiques
 
+
 # Appel à la fonction d'authentification
 authentication_status, authenticator = authenticate_user()
 
@@ -35,18 +36,6 @@ if authentication_status:
     
     # Afficher la page principale après authentification
     display_main_page()
-    
-    ''' 
-    # Appeler la fonction de gestion des entrées utilisateur (par exemple, remplir un formulaire)
-    title, description, model, importance = handle_user_input()
-    
-    if title:  # Si l'utilisateur a soumis un projet
-        st.write(f"Titre du projet : {title}")
-        st.write(f"Description : {description}")
-        st.write(f"Modèle sélectionné : {model}")
-        st.write(f"Niveau d'importance : {importance}")
-    ''' 
-    
     
     # Exemple de chargement des données en back-end
     if st.button("Charger les données"):
